@@ -1,15 +1,15 @@
-// Función para cargar un HTML de sección
+// Cargar sección desde HTML externo
 function loadSection(sectionName) {
     fetch(`sections/${sectionName}.html`)
-        .then(response => {
-            if (!response.ok) throw new Error(`No se pudo cargar ${sectionName}`);
-            return response.text();
+        .then(res => {
+            if (!res.ok) throw new Error(`No se pudo cargar ${sectionName}`);
+            return res.text();
         })
         .then(html => {
             document.getElementById('main-content').innerHTML = html;
 
-            // Inicializar funciones de cada sección si existen
-            switch (sectionName) {
+            // Inicializar funciones específicas por sección
+            switch(sectionName){
                 case 'section-pagos': initPagos(); break;
                 case 'section-buscar': initBuscar(); break;
                 case 'section-reportes': initReportes(); break;
@@ -19,10 +19,10 @@ function loadSection(sectionName) {
         .catch(err => console.error(err));
 }
 
-// Cargar la sección inicial (Pagos)
+// Cargar sección inicial
 loadSection('section-pagos');
 
-// Manejo de clic en menú lateral
+// Manejo del menú lateral
 document.querySelectorAll('.navitem').forEach(item => {
     item.addEventListener('click', () => {
         const section = item.getAttribute('data-section');
@@ -34,10 +34,10 @@ document.querySelectorAll('.navitem').forEach(item => {
     });
 });
 
-// Funciones de inicialización de cada sección (opcional)
+// Funciones de inicialización de cada sección
 function initPagos() {
     console.log("Sección Pagos cargada");
-    // Aquí puedes inicializar botones, cálculos, etc.
+    // Aquí puedes llamar a tu código de botones y formularios
 }
 
 function initBuscar() {
