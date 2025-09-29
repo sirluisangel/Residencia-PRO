@@ -381,3 +381,13 @@ body.layout {
   background: #f1f5f9;
   cursor: not-allowed;
 }
+
+/* Animación de entrada/salida */
+.fade {
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.fade.show {
+  opacity: 1;
+}
