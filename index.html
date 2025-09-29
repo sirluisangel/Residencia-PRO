@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ingreso | Desarrollo Urbano</title>
+  <link rel="stylesheet" href="login.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+  <canvas id="particles"></canvas>
+  <div class="auth-container">
+    <div class="auth-card">
+      <div class="auth-header">
+        <i class="fa-solid fa-shield-halved"></i>
+        <h1>Desarrollo Urbano</h1>
+        <p class="muted">Accede o crea tu cuenta</p>
+      </div>
+
+      <div class="tabs">
+        <button class="tab active" data-tab="login">Iniciar sesión</button>
+        <button class="tab" data-tab="register">Registrarse</button>
+      </div>
+
+      <!-- Login -->
+      <form id="loginForm" class="auth-form tab-pane active" autocomplete="off">
+        <div class="field">
+          <i class="fa-solid fa-user field-icon"></i>
+          <input id="loginUser" type="text" placeholder="Usuario" required/>
+        </div>
+        <div class="field">
+          <i class="fa-solid fa-lock field-icon"></i>
+          <input id="loginPass" type="password" placeholder="Contraseña" required/>
+          <i class="fa-solid fa-eye toggle-pass"></i>
+        </div>
+        <button class="btn primary w-full" type="submit">
+          <i class="fa-solid fa-right-to-bracket"></i> Entrar
+        </button>
+      </form>
+
+      <!-- Registro -->
+      <form id="registerForm" class="auth-form tab-pane" autocomplete="off">
+        <div class="field">
+          <i class="fa-solid fa-user-plus field-icon"></i>
+          <input id="regUser" type="text" placeholder="Nuevo usuario" required/>
+        </div>
+        <div class="field">
+          <i class="fa-solid fa-key field-icon"></i>
+          <input id="regPass" type="password" placeholder="Contraseña" required/>
+          <i class="fa-solid fa-eye toggle-pass"></i>
+        </div>
+        <div class="password-strength"><div class="strength-bar"></div></div>
+        <button class="btn success w-full" type="submit">
+          <i class="fa-solid fa-user-check"></i> Crear cuenta
+        </button>
+      </form>
+
+      <footer class="auth-footer">
+        <small>© 2025 Agenda de Pagos — Desarrollo Urbano</small>
+      </footer>
+    </div>
+  </div>
+  <script src="login.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Agenda Control de Pagos</title>
+<link rel="stylesheet" href="styles1.css"/>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body class="layout">
+
+<!-- ASIDE: Menú lateral -->
+<aside class="sidebar">
+  <div class="brand"><i class="fa-solid fa-book"></i> Menú</div>
+  <nav>
+    <a class="navitem active" data-section="section-pagos"><i class="fa-solid fa-list-check"></i> Control de pagos</a>
+    <a class="navitem" data-section="section-buscar"><i class="fa-solid fa-magnifying-glass"></i> Buscar expediente</a>
+    <a class="navitem" data-section="section-reportes"><i class="fa-solid fa-chart-line"></i> Reportes</a>
+    <a class="navitem" data-section="section-config"><i class="fa-solid fa-gear"></i> Configuración</a>
+    <a class="navitem" id="logoutLink" href="#"><i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión</a>
+  </nav>
+</aside>
+
+<!-- MAIN CONTENT -->
+<main class="content">
+  <header class="topbar">
+    <h1><i class="fa-solid fa-calendar-check"></i> Agenda Control de Pagos</h1>
+    <div class="topbar-actions">
+      <span id="userBadge" class="badge"></span>
+      <button id="toggleTheme" class="icon-btn" title="Tema oscuro/claro"><i class="fa-solid fa-moon"></i></button>
+    </div>
+  </header>
+
+  <!-- Contenedor donde se cargarán las secciones -->
+  <div id="main-content"></div>
+</main>
+
+<script src="script1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js"></script>
+</body>
+</html>

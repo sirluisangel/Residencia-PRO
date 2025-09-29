@@ -1,0 +1,58 @@
+<section class="card section">
+<form id="formPagos" enctype="multipart/form-data" onsubmit="return false;">
+
+  <!-- DATOS GENERALES -->
+  <h2>Datos Generales</h2>
+  <div class="grid-2 gap">
+    <div class="field"><label for="np"><i class="fa-solid fa-hashtag"></i> NP (Folio de Expediente)</label><input id="np" type="text" required/></div>
+    <div class="field"><label for="fechaIng"><i class="fa-solid fa-calendar-days"></i> Fecha de Ingreso</label><input id="fechaIng" type="date" required/></div>
+    <div class="field"><label for="nombre"><i class="fa-solid fa-user"></i> Nombre del Solicitante</label><input id="nombre" type="text" required/></div>
+    <div class="field"><label for="ubicacion"><i class="fa-solid fa-location-dot"></i> Ubicación del Predio (Calles)</label><input id="ubicacion" type="text"/></div>
+    <div class="field"><label for="localidad"><i class="fa-solid fa-city"></i> Localidad / Colonia</label><input id="localidad" type="text"/></div>
+  </div>
+
+  <!-- PERMISOS SOLICITADOS -->
+  <h2>Permisos Solicitados</h2>
+  <div class="tramites" id="tramitesContainer">
+    <!-- Aquí va todo tu bloque de trámites (LUS, CIZ, CANO, CUS, VBCUS) tal como estaba -->
+  </div>
+
+  <!-- ESTATUS -->
+  <h2>Estatus</h2>
+  <div class="field">
+    <label for="estatus"><i class="fa-solid fa-toggle-on"></i> Selecciona estatus</label>
+    <select id="estatus">
+      <option value="Pendiente">Pendiente</option>
+      <option value="Autorizado">Autorizado</option>
+      <option value="Entregado">Entregado</option>
+    </select>
+  </div>
+
+  <!-- CAMPOS ENTREGADO -->
+  <div id="entregadoFields" class="hidden card small">
+    <div class="field">
+      <label for="pdfExp"><i class="fa-solid fa-file-pdf"></i> Adjuntar PDF del expediente</label>
+      <input id="pdfExp" type="file" accept="application/pdf"/>
+      <small>Seleccione el archivo que desea subir.</small>
+    </div>
+    <div class="field"><label for="noHojas"><i class="fa-solid fa-file-lines"></i> No. de Hojas</label><input id="noHojas" type="number" min="1"/></div>
+    <div class="field"><label for="noLeg"><i class="fa-solid fa-folder"></i> No. de Legajo</label><input id="noLeg" type="text"/></div>
+  </div>
+
+  <!-- INFORMACIÓN COMPLEMENTARIA -->
+  <h2>Información Complementaria</h2>
+  <div class="grid-2 gap">
+    <!-- Aquí van todos los campos adicionales (fechaProg, fechaAut, fechaEnt, teléfono, etc.) -->
+  </div>
+
+  <!-- ACCIONES -->
+  <div class="actions">
+    <button type="button" class="btn" id="btnBuscar"><i class="fa-solid fa-magnifying-glass"></i> Buscar</button>
+    <button type="button" class="btn success" id="btnGuardar"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
+    <button type="button" class="btn info" id="btnActualizar"><i class="fa-solid fa-rotate"></i> Actualizar</button>
+    <button type="button" class="btn danger" id="btnEliminar"><i class="fa-solid fa-trash"></i> Eliminar</button>
+    <button type="reset" class="btn ghost" id="btnLimpiar">Limpiar</button>
+  </div>
+
+</form>
+</section>

@@ -1,0 +1,35 @@
+<section class="card section">
+<h2>📊 Reportes Registrados</h2>
+
+<div class="filters report-filters">
+  <div class="field">
+    <label for="repDesde">Desde</label>
+    <input id="repDesde" type="date"/>
+  </div>
+  <div class="field">
+    <label for="repHasta">Hasta</label>
+    <input id="repHasta" type="date"/>
+  </div>
+  <div class="actions">
+    <button class="btn" id="btnFiltrarRep"><i class="fa-solid fa-filter"></i> Filtrar</button>
+    <button class="btn success" id="btnExportarExcel"><i class="fa-solid fa-file-excel"></i> Exportar Excel</button>
+    <button class="btn info" id="btnExportarPDF"><i class="fa-solid fa-file-pdf"></i> Exportar PDF</button>
+  </div>
+</div>
+
+<div class="table-wrap report-table-wrap">
+  <table class="table report-table" id="tablaReportes">
+    <thead>
+      <tr>
+        <th>NP</th><th>Fecha Ingreso</th><th>Nombre</th><th>Ubicación</th><th>Localidad</th>
+        <th>Trámites (cod:cant)</th><th>Fecha Prog.</th><th>Fecha Aut.</th><th>Fecha Ent.</th>
+        <th>Teléfono</th><th>Orden Pago</th><th>Fecha Orden</th><th>Cantidad</th><th>Recibo</th>
+        <th>Servidor Púb</th><th>Escáner</th><th>No. Leg</th><th>No. Hojas</th><th>Clave Exp</th>
+        <th>Observaciones</th><th>Estatus</th><th>Importe Total</th><th>Usuario</th>
+        <th>Fecha Guardado</th><th>Hora Guardado</th><th>PDF</th><th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+</section>
