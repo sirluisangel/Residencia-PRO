@@ -1,30 +1,22 @@
 // ==============================
 // Cargar sección desde HTML externo
 // ==============================
+// Cargar sección desde HTML externo
 function loadSection(sectionName) {
-    fetch(`sections/${sectionName}.html`)
+    fetch(`sections/sections-${sectionName}.html`)
         .then(res => {
             if (!res.ok) throw new Error(`No se pudo cargar ${sectionName}`);
             return res.text();
         })
         .then(html => {
-            // Insertar contenido de la sección
             document.getElementById('main-content').innerHTML = html;
 
-            // Llamar a la función de inicialización según la sección
-            switch (sectionName) {
-                case 'section-pagos': 
-                    initPagos(); 
-                    break;
-                case 'section-buscar': 
-                    initBuscar(); 
-                    break;
-                case 'section-reportes': 
-                    initReportes(); 
-                    break;
-                case 'section-config': 
-                    initConfig(); 
-                    break;
+            // Inicializar funciones específicas por sección
+            switch(sectionName){
+                case 'pagos': initPagos(); break;
+                case 'buscar': initBuscar(); break;
+                case 'reportes': initReportes(); break;
+                case 'config': initConfig(); break;
             }
         })
         .catch(err => {
