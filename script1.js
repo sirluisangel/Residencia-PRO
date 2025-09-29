@@ -13,10 +13,10 @@ function loadSection(sectionName) {
 
             // Inicializar funciones específicas por sección
             switch(sectionName){
-                case 'pagos': initPagos(); break;
-                case 'buscar': initBuscar(); break;
-                case 'reportes': initReportes(); break;
-                case 'config': initConfig(); break;
+                case 'section-pagos': initPagos(); break;
+                case 'section-buscar': initBuscar(); break;
+                case 'section-reportes': initReportes(); break;
+                case 'section-config': initConfig(); break;
             }
         })
         .catch(err => {
