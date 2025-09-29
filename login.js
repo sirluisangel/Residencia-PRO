@@ -67,7 +67,7 @@
       const req = store.add({ usuario, pass });
       req.onsuccess = () => {
         Swal.fire({ icon:"success", title:"Registrado", text:"Usuario creado", timer:1200, showConfirmButton:false })
-          .then(()=> {localStorage.setItem("sessionUser", usuario); window.location.href="main.html";});
+          .then(()=> {localStorage.setItem("sessionUser", usuario); window.location.href="main/main.html";});
       };
       req.onerror = () => Swal.fire("Error", "El usuario ya existe o no se pudo registrar", "error");
     });
@@ -84,7 +84,7 @@
         if (req.result && req.result.pass === pass) {
           localStorage.setItem("sessionUser", usuario);
           Swal.fire({ icon:"success", title:"Bienvenido", text:`Hola ${usuario}`, timer:900, showConfirmButton:false })
-            .then(()=> window.location.href="main.html");
+            .then(()=> window.location.href="main/main.html");
         } else Swal.fire("Error", "Usuario o contraseña incorrectos", "error");
       };
       req.onerror = () => Swal.fire("Error", "No se pudo validar usuario", "error");
