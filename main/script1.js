@@ -1,44 +1,4 @@
 // ==============================
-// Cargar sección desde HTML externo con fade
-// ==============================
-function loadSection(sectionName) {
-    const container = document.getElementById('main-content');
-
-    // Aplicar fade out
-    container.classList.remove('show');
-    container.classList.add('fade');
-
-    // Cargar el archivo de la sección
-    fetch(`sections/sections-${sectionName}.html`)
-        .then(res => {
-            if (!res.ok) throw new Error(`No se pudo cargar ${sectionName}`);
-            return res.text();
-        })
-        .then(html => {
-            // Reemplazar contenido
-            container.innerHTML = html;
-
-            // Activar fade in después de un pequeño delay
-            setTimeout(() => {
-                container.classList.add('show');
-            }, 50);
-
-            // Inicializar funciones específicas de cada sección
-            switch (sectionName) {
-                case 'pagos': initPagos(); break;
-                case 'buscar': initBuscar(); break;
-                case 'reportes': initReportes(); break;
-                case 'config': initConfig(); break;
-            }
-        })
-        .catch(err => {
-            console.error(err);
-            container.innerHTML =
-                `<p style="color:red;">Error: ${err.message}</p>`;
-        });
-}
-
-// ==============================
 // Manejo del menú lateral
 // ==============================
 document.addEventListener("DOMContentLoaded", () => {
@@ -55,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Cargar sección inicial
+    // Cargar sección inicial al abrir la página
     loadSection('pagos');
 });
 
@@ -80,4 +40,43 @@ function initReportes() {
 function initConfig() {
     console.log("✅ Sección Configuración cargada");
     // Aquí va el código JS específico de la sección configuración
+}
+
+// ==============================
+// Cargar sección desde HTML externo con fade
+// ==============================
+function loadSection(sectionName) {
+    const container = document.getElementById('main-content');
+
+    // Aplicar fade out
+    container.classList.remove('show');
+    container.classList.add('fade');
+
+    fetch(`sections/sections-${sectionName}.html`)
+        .then(res => {
+            if (!res.ok) throw new Error(`No se pudo cargar ${sectionName}`);
+            return res.text();
+        })
+        .then(html => {
+            // Reemplazar contenido
+            container.innerHTML = html;
+
+            // Forzar un pequeño delay para activar el fade in
+            setTimeout(() => {
+                container.classList.add('show');
+            }, 50);
+
+            // Inicializar funciones específicas
+            switch (sectionName) {
+                case 'pagos': initPagos(); break;
+                case 'buscar': initBuscar(); break;
+                case 'reportes': initReportes(); break;
+                case 'config': initConfig(); break;
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            container.innerHTML =
+                `<p style="color:red;">Error: ${err.message}</p>`;
+        });
 }
