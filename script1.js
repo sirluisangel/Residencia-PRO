@@ -1,8 +1,8 @@
 // ==============================
 // Cargar sección desde HTML externo
 // ==============================
-// Cargar sección desde HTML externo
 function loadSection(sectionName) {
+    // Ajuste para coincidir con tus archivos: sections/sections-pagos.html
     fetch(`sections/sections-${sectionName}.html`)
         .then(res => {
             if (!res.ok) throw new Error(`No se pudo cargar ${sectionName}`);
@@ -12,16 +12,16 @@ function loadSection(sectionName) {
             document.getElementById('main-content').innerHTML = html;
 
             // Inicializar funciones específicas por sección
-            switch(sectionName){
-                case 'section-pagos': initPagos(); break;
-                case 'section-buscar': initBuscar(); break;
-                case 'section-reportes': initReportes(); break;
-                case 'section-config': initConfig(); break;
+            switch (sectionName) {
+                case 'pagos': initPagos(); break;
+                case 'buscar': initBuscar(); break;
+                case 'reportes': initReportes(); break;
+                case 'config': initConfig(); break;
             }
         })
         .catch(err => {
             console.error(err);
-            document.getElementById('main-content').innerHTML = 
+            document.getElementById('main-content').innerHTML =
                 `<p style="color:red;">Error: ${err.message}</p>`;
         });
 }
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     navItems.forEach(item => {
         item.addEventListener('click', () => {
-            const section = item.getAttribute('data-section');
+            const section = item.getAttribute('data-section'); // ej: "pagos"
             loadSection(section);
 
             // Resaltar ítem activo
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Cargar sección inicial al abrir la página
-    loadSection('section-pagos');
+    loadSection('pagos');
 });
 
 // ==============================
