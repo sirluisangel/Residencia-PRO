@@ -1,4 +1,6 @@
+// ==============================
 // Cargar sección desde HTML externo
+// ==============================
 function loadSection(sectionName) {
     fetch(`sections/${sectionName}.html`)
         .then(res => {
@@ -6,48 +8,72 @@ function loadSection(sectionName) {
             return res.text();
         })
         .then(html => {
+            // Insertar contenido de la sección
             document.getElementById('main-content').innerHTML = html;
 
-            // Inicializar funciones específicas por sección
-            switch(sectionName){
-                case 'section-pagos': initPagos(); break;
-                case 'section-buscar': initBuscar(); break;
-                case 'section-reportes': initReportes(); break;
-                case 'section-config': initConfig(); break;
+            // Llamar a la función de inicialización según la sección
+            switch (sectionName) {
+                case 'section-pagos': 
+                    initPagos(); 
+                    break;
+                case 'section-buscar': 
+                    initBuscar(); 
+                    break;
+                case 'section-reportes': 
+                    initReportes(); 
+                    break;
+                case 'section-config': 
+                    initConfig(); 
+                    break;
             }
         })
-        .catch(err => console.error(err));
+        .catch(err => {
+            console.error(err);
+            document.getElementById('main-content').innerHTML = 
+                `<p style="color:red;">Error: ${err.message}</p>`;
+        });
 }
 
-// Cargar sección inicial
-loadSection('section-pagos');
-
+// ==============================
 // Manejo del menú lateral
-document.querySelectorAll('.navitem').forEach(item => {
-    item.addEventListener('click', () => {
-        const section = item.getAttribute('data-section');
-        loadSection(section);
+// ==============================
+document.addEventListener("DOMContentLoaded", () => {
+    const navItems = document.querySelectorAll('.navitem');
 
-        // Resaltar menú activo
-        document.querySelectorAll('.navitem').forEach(nav => nav.classList.remove('active'));
-        item.classList.add('active');
+    navItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const section = item.getAttribute('data-section');
+            loadSection(section);
+
+            // Resaltar ítem activo
+            navItems.forEach(nav => nav.classList.remove('active'));
+            item.classList.add('active');
+        });
     });
+
+    // Cargar sección inicial al abrir la página
+    loadSection('section-pagos');
 });
 
-// Funciones de inicialización de cada sección
+// ==============================
+// Funciones de inicialización
+// ==============================
 function initPagos() {
-    console.log("Sección Pagos cargada");
-    // Aquí puedes llamar a tu código de botones y formularios
+    console.log("✅ Sección Pagos cargada");
+    // Aquí va el código JS específico de la sección pagos
 }
 
 function initBuscar() {
-    console.log("Sección Buscar cargada");
+    console.log("✅ Sección Buscar cargada");
+    // Aquí va el código JS específico de la sección buscar
 }
 
 function initReportes() {
-    console.log("Sección Reportes cargada");
+    console.log("✅ Sección Reportes cargada");
+    // Aquí va el código JS específico de la sección reportes
 }
 
 function initConfig() {
-    console.log("Sección Configuración cargada");
+    console.log("✅ Sección Configuración cargada");
+    // Aquí va el código JS específico de la sección configuración
 }
