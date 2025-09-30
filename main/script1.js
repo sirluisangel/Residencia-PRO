@@ -72,23 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function initPagos() {
     console.log("✅ Sección Pagos cargada");
     // Código JS específico de Pagos
-}
-
-function initBuscar() {
-    console.log("✅ Sección Buscar cargada");
-    // Código JS específico de Buscar
-}
-
-function initReportes() {
-    console.log("✅ Sección Reportes cargada");
-    // Código JS específico de Reportes
-}
-
-function initConfig() {
-    console.log("✅ Sección Configuración cargada");
-    // Código JS específico de Config
-}
-document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("DOMContentLoaded", () => {
   const stepBtns = document.querySelectorAll(".step-btn");
   const steps = document.querySelectorAll(".step");
 
@@ -128,3 +112,20 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("entregadoFields").classList.toggle("hidden", e.target.value !== "Entregado");
   });
 });
+
+}
+
+function initBuscar() {
+    console.log("✅ Sección Buscar cargada");
+    // Código JS específico de Buscar
+}
+
+function initReportes() {
+    console.log("✅ Sección Reportes cargada");
+    // Código JS específico de Reportes
+}
+
+function initConfig() {
+    console.log("✅ Sección Configuración cargada");
+    // Código JS específico de Config
+}
