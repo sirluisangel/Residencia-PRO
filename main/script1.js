@@ -72,6 +72,47 @@ document.addEventListener("DOMContentLoaded", () => {
 function initPagos() {
     console.log("✅ Sección Pagos cargada");
     // Código JS específico de Pagos
+    document.addEventListener("DOMContentLoaded", () => {
+  const stepBtns = document.querySelectorAll(".step-btn");
+  const steps = document.querySelectorAll(".step");
+
+  // Cambiar entre etapas
+  stepBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      stepBtns.forEach(b => b.classList.remove("active"));
+      steps.forEach(s => s.classList.remove("active"));
+      btn.classList.add("active");
+      document.getElementById(`step-${btn.dataset.step}`).classList.add("active");
+    });
+  });
+
+  // Activar cantidad al seleccionar permiso
+  document.querySelectorAll(".chk").forEach(chk => {
+    chk.addEventListener("change", e => {
+      const code = chk.dataset.code;
+      const cantidad = document.querySelector(`.cantidad[data-for="${code}"]`);
+      const precio = parseFloat(chk.dataset.cost);
+
+      if(chk.checked){
+        cantidad.disabled = false;
+        cantidad.addEventListener("input", () => {
+          const importe = document.querySelector(`.importe[data-imp-for="${code}"]`);
+          importe.value = (cantidad.value * precio).toFixed(2);
+        });
+      } else {
+        cantidad.disabled = true;
+        cantidad.value = "";
+        document.querySelector(`.importe[data-imp-for="${code}"]`).value = "0.00";
+      }
+    });
+  });
+
+  // Mostrar campos si estatus es "Entregado"
+  document.getElementById("estatus").addEventListener("change", e => {
+    document.getElementById("entregadoFields").classList.toggle("hidden", e.target.value !== "Entregado");
+  });
+});
+
 }
 
 function initBuscar() {
@@ -88,3 +129,4 @@ function initConfig() {
     console.log("✅ Sección Configuración cargada");
     // Código JS específico de Config
 }
+

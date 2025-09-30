@@ -400,3 +400,40 @@ body.layout {
     opacity: 1;
 }
 
+.steps-nav {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+.step-btn {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  background: #e5e7eb;
+  cursor: pointer;
+  border-radius: 6px;
+}
+.step-btn.active {
+  background: #2563eb;
+  color: white;
+}
+
+.step { display: none; }
+.step.active { display: block; }
+
+.menu-permisos details {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin: 8px 0;
+  padding: 5px 10px;
+}
+.menu-permisos summary {
+  cursor: pointer;
+  font-weight: bold;
+}
+.permiso {
+  margin-top: 8px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
