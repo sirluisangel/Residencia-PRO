@@ -400,3 +400,13 @@ body.layout {
     opacity: 1;
 }
 
+.step {
+  display: none;
+}
+.step.active {
+  display: block;
+}
+.step-btn.active {
+  background: #2563eb;
+  color: white;
+}

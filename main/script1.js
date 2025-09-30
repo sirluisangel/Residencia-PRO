@@ -72,15 +72,18 @@ document.addEventListener("DOMContentLoaded", () => {
 function initPagos() {
     console.log("✅ Sección Pagos cargada");
     // Código JS específico de Pagos
-    document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   const stepBtns = document.querySelectorAll(".step-btn");
   const steps = document.querySelectorAll(".step");
 
   // Cambiar entre etapas
   stepBtns.forEach(btn => {
     btn.addEventListener("click", () => {
+      // Quitar activo en todos
       stepBtns.forEach(b => b.classList.remove("active"));
       steps.forEach(s => s.classList.remove("active"));
+
+      // Activar botón y etapa seleccionada
       btn.classList.add("active");
       document.getElementById(`step-${btn.dataset.step}`).classList.add("active");
     });
@@ -112,6 +115,7 @@ function initPagos() {
     document.getElementById("entregadoFields").classList.toggle("hidden", e.target.value !== "Entregado");
   });
 });
+
 
 }
 
