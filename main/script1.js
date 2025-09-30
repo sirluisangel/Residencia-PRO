@@ -88,3 +88,26 @@ function initConfig() {
     console.log("✅ Sección Configuración cargada");
     // Código JS específico de Config
 }
+// Control de flujo entre etapas
+document.addEventListener("DOMContentLoaded", () => {
+  const etapa1 = document.getElementById("etapa1");
+  const etapa2 = document.getElementById("etapa2");
+  const etapa3 = document.getElementById("etapa3");
+
+  // Paso 1: validar ingreso
+  const ingresoInputs = ["np", "fechaIng", "nombre"];
+  ingresoInputs.forEach(id => {
+    document.getElementById(id).addEventListener("input", () => {
+      if (ingresoInputs.every(fid => document.getElementById(fid).value.trim() !== "")) {
+        etapa2.classList.remove("hidden");
+      }
+    });
+  });
+
+  // Paso 2: autorización
+  document.getElementById("estatus").addEventListener("change", (e) => {
+    if (e.target.value === "Autorizado" || e.target.value === "Entregado") {
+      etapa3.classList.remove("hidden");
+    }
+  });
+});
