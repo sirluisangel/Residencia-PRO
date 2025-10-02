@@ -72,20 +72,40 @@ document.addEventListener("DOMContentLoaded", () => {
 function initPagos() {
     console.log("✅ Sección Pagos cargada");
     // Código JS específico de Pagos
-      const stepBtns = document.querySelectorAll(".step-btn");
-  const steps = document.querySelectorAll(".step");
+    const steps = document.querySelectorAll(".step");
 
-  // Cambiar entre etapas
-  stepBtns.forEach(btn => {
-    btn.addEventListener("click", () => {
-      // Quitar activo en todos
-      stepBtns.forEach(b => b.classList.remove("active"));
-      steps.forEach(s => s.classList.remove("active"));
+  // función para mostrar paso
+  function showStep(index) {
+    const step = steps[index];
+    if (step && !step.classList.contains("active")) {
+      step.classList.add("active");
+      step.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
 
-      // Activar botón y etapa seleccionada
-      btn.classList.add("active");
-      document.getElementById(`step-${btn.dataset.step}`).classList.add("active");
-    });
+  // ✅ Avanza automáticamente cuando todos los requeridos estén llenos
+  steps.forEach((step, idx) => {
+    const requiredInputs = step.querySelectorAll("[required]");
+    if (requiredInputs.length > 0) {
+      requiredInputs.forEach(input => {
+        input.addEventListener("change", () => {
+          const allFilled = [...requiredInputs].every(i => i.value.trim() !== "");
+          if (allFilled) {
+            showStep(idx + 1);
+          }
+        });
+      });
+    }
+  });
+
+  // Mostrar campos extra si estatus = "Entregado"
+  const estatus = document.getElementById("estatus");
+  const entregadoFields = document.getElementById("entregadoFields");
+  estatus.addEventListener("change", () => {
+    entregadoFields.classList.toggle("hidden", estatus.value !== "Entregado");
+    if (estatus.value === "Entregado") {
+      entregadoFields.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   });
 
   // Activar cantidad al seleccionar permiso

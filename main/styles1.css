@@ -402,11 +402,14 @@ body.layout {
 
 .step {
   display: none;
+  margin-bottom: 2rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
 }
 .step.active {
   display: block;
+  opacity: 1;
+  transform: translateY(0);
 }
-.step-btn.active {
-  background: #2563eb;
-  color: white;
-}
+.hidden { display: none; }
