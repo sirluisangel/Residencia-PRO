@@ -1,16 +1,9 @@
 <section class="card section">
   <form id="formPagos" enctype="multipart/form-data" onsubmit="return false;">
     
-    <!-- NAV ETAPAS -->
-    <div class="steps-nav">
-      <button type="button" class="step-btn active" data-step="1">1. Datos Generales</button>
-      <button type="button" class="step-btn" data-step="2">2. Permisos</button>
-      <button type="button" class="step-btn" data-step="3">3. Estatus y Entrega</button>
-    </div>
-
     <!-- ETAPA 1 -->
     <div class="step active" id="step-1">
-      <h2>Datos Generales</h2>
+      <h2><i class="fa-solid fa-circle-1"></i> Datos Generales</h2>
       <div class="grid-2 gap">
         <div class="field"><label for="np"><i class="fa-solid fa-hashtag"></i> NP (Folio de Expediente)</label><input id="np" type="text" required/></div>
         <div class="field"><label for="fechaIng"><i class="fa-solid fa-calendar-days"></i> Fecha Ingreso</label><input id="fechaIng" type="date" required/></div>
@@ -23,9 +16,8 @@
 
     <!-- ETAPA 2 -->
     <div class="step" id="step-2">
-      <h2>Permisos Solicitados</h2>
+      <h2><i class="fa-solid fa-circle-2"></i> Permisos Solicitados</h2>
       <div class="menu-permisos">
-        <!-- Ejemplo en menú -->
         <details>
           <summary><i class="fa-solid fa-file"></i> 1. L.U.S</summary>
           <div class="permiso">
@@ -35,7 +27,6 @@
             <input type="number" class="importe" data-imp-for="LUS" value="0.00" step="0.01" readonly/>
           </div>
         </details>
-
         <details>
           <summary><i class="fa-solid fa-file"></i> 2. C.I.Z</summary>
           <div class="permiso">
@@ -45,14 +36,12 @@
             <input type="number" class="importe" data-imp-for="CIZ" value="0.00" step="0.01" readonly/>
           </div>
         </details>
-
-        <!-- Repite lo mismo para CANO, CUS, VBCUS -->
       </div>
     </div>
 
     <!-- ETAPA 3 -->
     <div class="step" id="step-3">
-      <h2>Estatus</h2>
+      <h2><i class="fa-solid fa-circle-3"></i> Estatus y Entrega</h2>
       <div class="field">
         <label for="estatus"><i class="fa-solid fa-toggle-on"></i> Selecciona estatus</label>
         <select id="estatus">
@@ -61,32 +50,10 @@
           <option value="Entregado">Entregado</option>
         </select>
       </div>
-
-      <!-- CAMPOS ENTREGADO -->
       <div id="entregadoFields" class="hidden card small">
-        <div class="field">
-          <label for="pdfExp"><i class="fa-solid fa-file-pdf"></i> PDF Expediente</label>
-          <input id="pdfExp" type="file" accept="application/pdf"/>
-        </div>
+        <div class="field"><label for="pdfExp"><i class="fa-solid fa-file-pdf"></i> PDF Expediente</label><input id="pdfExp" type="file" accept="application/pdf"/></div>
         <div class="field"><label for="noHojas">No. Hojas</label><input id="noHojas" type="number" min="1"/></div>
         <div class="field"><label for="noLeg">No. Legajo</label><input id="noLeg" type="text"/></div>
-      </div>
-
-      <h2>Información Complementaria</h2>
-      <div class="grid-2 gap">
-        <div class="field"><label for="fechaProg">Fecha Programada</label><input id="fechaProg" type="date"></div>
-        <div class="field"><label for="fechaAut">Fecha Autorización</label><input id="fechaAut" type="date"></div>
-        <div class="field"><label for="fechaEnt">Fecha Entrega</label><input id="fechaEnt" type="date"></div>
-        <div class="field"><label for="ordenPago">Orden Pago</label><input id="ordenPago" type="text"></div>
-        <div class="field"><label for="fechaOrd">Fecha Orden</label><input id="fechaOrd" type="date"></div>
-        <div class="field"><label for="cantidadGlobal">Cantidad Global</label><input id="cantidadGlobal" type="number"></div>
-        <div class="field"><label for="reciboPago">Recibo Pago</label><input id="reciboPago" type="text"></div>
-        <div class="field"><label for="servidor">Servidor Público</label><input id="servidor" type="text"></div>
-        <div class="field"><label for="escan">Escáner</label><input id="escan" type="text"></div>
-        <div class="field"><label for="claveExp">Clave Expediente</label><input id="claveExp" type="text"></div>
-        <div class="field"><label for="obs">Observaciones</label><textarea id="obs"></textarea></div>
-        <div class="field"><label for="importeTotal">Importe Total</label><input id="importeTotal" type="text" readonly/></div>
-        <div class="field"><label for="noRecibo">No. Recibo</label><input id="noRecibo" type="text"/></div>
       </div>
     </div>
 
