@@ -74,7 +74,7 @@ function initPagos() {
     // Código JS específico de Pagos
       // Botón para avanzar a etapa 2
   const nextBtn = document.createElement("button");
-  nextBtn.textContent = "Siguiente →";
+  nextBtn.textContent = " Siguiente Etapa →";
   nextBtn.classList.add("btn", "success");
   document.querySelector("#step-1").appendChild(nextBtn);
 
