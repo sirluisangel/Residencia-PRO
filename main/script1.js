@@ -72,66 +72,58 @@ document.addEventListener("DOMContentLoaded", () => {
 function initPagos() {
     console.log("✅ Sección Pagos cargada");
     // Código JS específico de Pagos
-    const steps = document.querySelectorAll(".step");
+      // Botón para avanzar a etapa 2
+  const nextBtn = document.createElement("button");
+  nextBtn.textContent = "Siguiente →";
+  nextBtn.classList.add("btn", "success");
+  document.querySelector("#step-1").appendChild(nextBtn);
 
-  // función para mostrar paso
-  function showStep(index) {
-    const step = steps[index];
-    if (step && !step.classList.contains("active")) {
-      step.classList.add("active");
-      step.scrollIntoView({ behavior: "smooth", block: "start" });
+  nextBtn.addEventListener("click", () => {
+    const seleccionados = [...document.querySelectorAll(".permisos-lista input:checked")];
+    const contenedor = document.getElementById("tabla-pagos");
+    contenedor.innerHTML = ""; // limpiar
+
+    if (seleccionados.length === 0) {
+      contenedor.innerHTML = "<p class='alert'>⚠️ No seleccionaste ningún permiso en la Etapa 1</p>";
+      return;
     }
-  }
 
-  // ✅ Avanza automáticamente cuando todos los requeridos estén llenos
-  steps.forEach((step, idx) => {
-    const requiredInputs = step.querySelectorAll("[required]");
-    if (requiredInputs.length > 0) {
-      requiredInputs.forEach(input => {
-        input.addEventListener("change", () => {
-          const allFilled = [...requiredInputs].every(i => i.value.trim() !== "");
-          if (allFilled) {
-            showStep(idx + 1);
-          }
-        });
-      });
-    }
-  });
+    seleccionados.forEach(chk => {
+      const clave = chk.value;
+      const nombre = chk.nextElementSibling.textContent;
 
-  // Mostrar campos extra si estatus = "Entregado"
-  const estatus = document.getElementById("estatus");
-  const entregadoFields = document.getElementById("entregadoFields");
-  estatus.addEventListener("change", () => {
-    entregadoFields.classList.toggle("hidden", estatus.value !== "Entregado");
-    if (estatus.value === "Entregado") {
-      entregadoFields.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  });
-
-  // Activar cantidad al seleccionar permiso
-  document.querySelectorAll(".chk").forEach(chk => {
-    chk.addEventListener("change", e => {
-      const code = chk.dataset.code;
-      const cantidad = document.querySelector(`.cantidad[data-for="${code}"]`);
-      const precio = parseFloat(chk.dataset.cost);
-
-      if(chk.checked){
-        cantidad.disabled = false;
-        cantidad.addEventListener("input", () => {
-          const importe = document.querySelector(`.importe[data-imp-for="${code}"]`);
-          importe.value = (cantidad.value * precio).toFixed(2);
-        });
-      } else {
-        cantidad.disabled = true;
-        cantidad.value = "";
-        document.querySelector(`.importe[data-imp-for="${code}"]`).value = "0.00";
-      }
+      contenedor.innerHTML += `
+        <div class="pago-item card small">
+          <h3><i class="fa-solid fa-file-invoice-dollar"></i> ${nombre}</h3>
+          <div class="grid-2 gap">
+            <div class="field">
+              <label>Orden:</label>
+              <input type="text" name="orden_${clave}"/>
+            </div>
+            <div class="field">
+              <label>Importe:</label>
+              <input type="number" name="importe_${clave}" step="0.01"/>
+            </div>
+            <div class="field">
+              <label>Fecha:</label>
+              <input type="date" name="fecha_${clave}"/>
+            </div>
+            <div class="field">
+              <label>Recibo:</label>
+              <input type="text" name="recibo_${clave}"/>
+            </div>
+            <div class="field">
+              <label>Pagado:</label>
+              <input type="number" name="pagado_${clave}" step="0.01"/>
+            </div>
+          </div>
+        </div>
+      `;
     });
-  });
 
-  // Mostrar campos si estatus es "Entregado"
-  document.getElementById("estatus").addEventListener("change", e => {
-    document.getElementById("entregadoFields").classList.toggle("hidden", e.target.value !== "Entregado");
+    // Cambiar de etapa
+    document.getElementById("step-1").classList.remove("active");
+    document.getElementById("step-2").classList.add("active");
   });
 }
 

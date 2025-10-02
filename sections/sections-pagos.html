@@ -1,61 +1,85 @@
-<section class="card section">
-  <form id="formPagos" enctype="multipart/form-data" onsubmit="return false;">
-    
-    <!-- ETAPA 1 -->
-    <div class="step active" id="step-1">
-      <h2><i class="fa-solid fa-circle-1"></i> Datos Generales</h2>
-      <div class="grid-2 gap">
-        <div class="field"><label for="np"><i class="fa-solid fa-hashtag"></i> NP (Folio de Expediente)</label><input id="np" type="text" required/></div>
-        <div class="field"><label for="fechaIng"><i class="fa-solid fa-calendar-days"></i> Fecha Ingreso</label><input id="fechaIng" type="date" required/></div>
-        <div class="field"><label for="nombre"><i class="fa-solid fa-user"></i> Nombre del Solicitante</label><input id="nombre" type="text" required/></div>
-        <div class="field"><label for="ubicacion"><i class="fa-solid fa-location-dot"></i> Ubicación del predio (Calles)</label><input id="ubicacion" type="text"/></div>
-        <div class="field"><label for="localidad"><i class="fa-solid fa-city"></i> Localidad / Colonia</label><input id="localidad" type="text"/></div>
-        <div class="field"><label for="telefono"><i class="fa-solid fa-phone"></i> Teléfono</label><input id="telefono" type="tel"></div>
-      </div>
-    </div>
+ya tengo la primera estapa que es esta <!-- ETAPA 1 -->
+<div class="step active" id="step-1">
+  <h2><i class="fa-solid fa-circle-1"></i> Etapa Ingreso</h2>
 
-    <!-- ETAPA 2 -->
-    <div class="step" id="step-2">
-      <h2><i class="fa-solid fa-circle-2"></i> Permisos Solicitados</h2>
-      <div class="menu-permisos">
-        <details>
-          <summary><i class="fa-solid fa-file"></i> 1. L.U.S</summary>
-          <div class="permiso">
-            <input type="checkbox" class="chk" data-code="LUS" data-cost="500"/> Seleccionar
-            <input type="number" min="1" max="999" class="cantidad" data-for="LUS" placeholder="Cant." disabled/>
-            <input type="number" class="precio" value="500" step="0.01" disabled/>
-            <input type="number" class="importe" data-imp-for="LUS" value="0.00" step="0.01" readonly/>
-          </div>
-        </details>
-        <details>
-          <summary><i class="fa-solid fa-file"></i> 2. C.I.Z</summary>
-          <div class="permiso">
-            <input type="checkbox" class="chk" data-code="CIZ" data-cost="300"/> Seleccionar
-            <input type="number" min="1" max="999" class="cantidad" data-for="CIZ" placeholder="Cant." disabled/>
-            <input type="number" class="precio" value="300" step="0.01" disabled/>
-            <input type="number" class="importe" data-imp-for="CIZ" value="0.00" step="0.01" readonly/>
-          </div>
-        </details>
-      </div>
+  <!-- 📌 DATOS GENERALES -->
+  <h3><i class="fa-solid fa-address-card"></i> Datos Generales</h3>
+  <div class="grid-2 gap">
+    <div class="field">
+      <label for="np"><i class="fa-solid fa-hashtag"></i> NP (Folio de Expediente)</label>
+      <input id="np" type="text" required/>
     </div>
+    <div class="field">
+      <label for="fechaIng"><i class="fa-solid fa-calendar-days"></i> Fecha Ingreso</label>
+      <input id="fechaIng" type="date" required/>
+    </div>
+    <div class="field">
+      <label for="nombre"><i class="fa-solid fa-user"></i> Nombre del Solicitante</label>
+      <input id="nombre" type="text" required/>
+    </div>
+    <div class="field">
+      <label for="ubicacion"><i class="fa-solid fa-location-dot"></i> Ubicación del predio (Calles)</label>
+      <input id="ubicacion" type="text"/>
+    </div>
+    <div class="field">
+      <label for="localidad"><i class="fa-solid fa-city"></i> Localidad / Colonia</label>
+      <input id="localidad" type="text"/>
+    </div>
+    <div class="field">
+      <label for="telefono"><i class="fa-solid fa-phone"></i> Teléfono</label>
+      <input id="telefono" type="tel"/>
+    </div>
+  </div>
 
-    <!-- ETAPA 3 -->
-    <div class="step" id="step-3">
-      <h2><i class="fa-solid fa-circle-3"></i> Estatus y Entrega</h2>
-      <div class="field">
-        <label for="estatus"><i class="fa-solid fa-toggle-on"></i> Selecciona estatus</label>
-        <select id="estatus">
-          <option value="Pendiente">Pendiente</option>
-          <option value="Autorizado">Autorizado</option>
-          <option value="Entregado">Entregado</option>
-        </select>
-      </div>
-      <div id="entregadoFields" class="hidden card small">
-        <div class="field"><label for="pdfExp"><i class="fa-solid fa-file-pdf"></i> PDF Expediente</label><input id="pdfExp" type="file" accept="application/pdf"/></div>
-        <div class="field"><label for="noHojas">No. Hojas</label><input id="noHojas" type="number" min="1"/></div>
-        <div class="field"><label for="noLeg">No. Legajo</label><input id="noLeg" type="text"/></div>
-      </div>
-    </div>
+  <!-- 📌 PERMISOS A TRAMITAR -->
+  <h3><i class="fa-solid fa-file-contract"></i> Permisos a Tramitar</h3>
+  <p>Selecciona los permisos que deseas solicitar:</p>
+  
+  <div class="permisos-lista">
+    <label class="permiso-item">
+      <input type="checkbox" value="3E.1.1"/>
+      <span><b>3E.1.1</b> – LICENCIA DE USO DE SUELO</span>
+    </label>
+    <label class="permiso-item">
+      <input type="checkbox" value="3E.1.1.1"/>
+      <span><b>3E.1.1.1</b> – LICENCIA DE USO DE SUELO - CAMBIO DE USO DE SUELO</span>
+    </label>
+    <label class="permiso-item">
+      <input type="checkbox" value="3E.1.2"/>
+      <span><b>3E.1.2</b> – LICENCIA DE CONSTRUCCIÓN NUEVA</span>
+    </label>
+    <label class="permiso-item">
+      <input type="checkbox" value="3E.1.3"/>
+      <span><b>3E.1.3</b> – LICENCIA DE CONSTRUCCIÓN AMPLIACIÓN</span>
+    </label>
+    <label class="permiso-item">
+      <input type="checkbox" value="3E.1.4"/>
+      <span><b>3E.1.4</b> – LICENCIA DE CONSTRUCCIÓN MODIFICACIÓN DE PROYECTO Y FACHADA</span>
+    </label>
+    <label class="permiso-item">
+      <input type="checkbox" value="3E.1.5"/>
+      <span><b>3E.1.5</b> – LICENCIA DE CONSTRUCCIÓN DE DEMOLICIÓN</span>
+    </label>
+    <label class="permiso-item">
+      <input type="checkbox" value="3E.1.6"/>
+      <span><b>3E.1.6</b> – LICENCIA DE CONSTRUCCIÓN DE BARDA</span>
+    </label>
+    <label class="permiso-item">
+      <input type="checkbox" value="3E.1.7"/>
+      <span><b>3E.1.7</b> – LICENCIA DE CONSTRUCCIÓN PRORROGA</span>
+    </label>
+  </div>
+</div>
+
+<!-- ETAPA 2 -->
+<div class="step" id="step-2">
+  <h2><i class="fa-solid fa-circle-2"></i> Etapa Autorización</h2>
+  <p>Aquí se muestran los pagos correspondientes a los permisos seleccionados en la Etapa Ingreso.</p>
+
+  <div id="tabla-pagos">
+    <p class="alert">⚠️ Selecciona permisos en la etapa anterior para generar los pagos.</p>
+  </div>
+</div>
 
     <!-- ACCIONES -->
     <div class="actions">
