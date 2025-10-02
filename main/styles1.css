@@ -413,3 +413,29 @@ body.layout {
   transform: translateY(0);
 }
 .hidden { display: none; }
+
+.permisos-lista {
+  display: flex;
+  flex-direction: column; /* Hace que los items se apilen verticalmente */
+  gap: 10px; /* Espacio entre cada item */
+  margin-top: 10px;
+}
+
+.permiso-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  transition: background 0.2s;
+}
+
+.permiso-item:hover {
+  background-color: #e0f0ff;
+}
+
+.permiso-item input[type="checkbox"] {
+  margin-right: 10px;
+  transform: scale(1.2);
+}
