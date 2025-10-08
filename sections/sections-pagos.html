@@ -70,6 +70,7 @@
   </label>
 </div>
 </div>
+
 <!-- ETAPA 2 -->
 <div class="step" id="step-2">
   <h2><i class="fa-solid fa-circle-2"></i> Etapa Autorización</h2>
@@ -79,6 +80,78 @@
     <p class="alert">⚠️ Selecciona permisos en la etapa anterior para generar los pagos.</p>
   </div>
 </div>
+
+<!-- ETAPA 3 -->
+<div class="step" id="step-3">
+  <h2><i class="fa-solid fa-circle-3"></i> Etapa Entrega</h2>
+  <p>Completa los datos correspondientes a la entrega de la licencia.</p>
+
+  <div class="grid-2 gap">
+    <div class="field">
+      <label for="fechaProgramada">📅 Fecha Programada de Entrega</label>
+      <input type="date" id="fechaProgramada" name="fechaProgramada" required />
+    </div>
+
+    <div class="field">
+      <label for="fechaAutorizacion">🗓️ Fecha de Autorización</label>
+      <input type="date" id="fechaAutorizacion" name="fechaAutorizacion" required />
+    </div>
+
+    <div class="field">
+      <label for="fechaEntrega">📆 Fecha de Entrega</label>
+      <input type="date" id="fechaEntrega" name="fechaEntrega" required />
+    </div>
+
+    <div class="field">
+      <label for="nombreEntrega">👤 Nombre de quien recibe</label>
+      <input type="text" id="nombreEntrega" name="nombreEntrega" placeholder="Ej. Juan Pérez o sustituto" required />
+    </div>
+
+    <div class="field">
+      <label for="servidorPublico">🏢 Servidor Público que entrega</label>
+      <input type="text" id="servidorPublico" name="servidorPublico" placeholder="Nombre del servidor público" required />
+    </div>
+
+    <div class="field">
+      <label for="estatusEntrega">📦 Estatus</label>
+      <select id="estatusEntrega" name="estatusEntrega">
+        <option value="">Selecciona estatus</option>
+        <option value="entregado">Entregado</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- CAMPOS QUE SE MUESTRAN AL SELECCIONAR 'ENTREGADO' -->
+  <div id="camposEntregado" style="display: none; margin-top: 1.5rem;">
+    <hr>
+    <h3><i class="fa-solid fa-file-pdf"></i> Expediente de Entrega</h3>
+
+    <div class="field">
+      <label for="pdfExpediente">📎 Adjuntar PDF del expediente</label>
+      <input type="file" id="pdfExpediente" name="pdfExpediente" accept="application/pdf" />
+      <small>Seleccione el archivo que desea subir.</small>
+    </div>
+
+    <div class="grid-2 gap">
+      <div class="field">
+        <label for="numHojas">📄 No. de Hojas</label>
+        <input type="number" id="numHojas" name="numHojas" min="1" />
+      </div>
+
+      <div class="field">
+        <label for="numLegajo">📚 No. de Legajo</label>
+        <input type="number" id="numLegajo" name="numLegajo" min="1" />
+      </div>
+    </div>
+  </div>
+
+  <!-- ACCIONES -->
+  <div class="actions">
+    <button type="button" class="btn secondary" id="btnRegresarEtapa2">← Regresar a Etapa 2</button>
+    <button type="submit" class="btn success">Guardar Entrega</button>
+  </div>
+</div>
+
     <!-- ACCIONES -->
     <div class="actions">
       <button type="button" class="btn" id="btnBuscar">Buscar</button>

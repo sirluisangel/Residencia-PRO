@@ -73,12 +73,13 @@ function initPagos() {
     console.log("✅ Sección Pagos cargada");
     // Código JS específico de Pagos
       // Botón para avanzar a etapa 2
-  const nextBtn = document.createElement("button");
-  nextBtn.textContent = " Siguiente Etapa →";
-  nextBtn.classList.add("btn", "success");
-  document.querySelector("#step-1").appendChild(nextBtn);
+// --- BOTÓN SIGUIENTE ETAPA 1 → 2 ---
+  const nextBtn1 = document.createElement("button");
+  nextBtn1.textContent = " Siguiente Etapa →";
+  nextBtn1.classList.add("btn", "success");
+  document.querySelector("#step-1").appendChild(nextBtn1);
 
-  nextBtn.addEventListener("click", () => {
+  nextBtn1.addEventListener("click", () => {
     const seleccionados = [...document.querySelectorAll(".permisos-lista input:checked")];
     const contenedor = document.getElementById("tabla-pagos");
     contenedor.innerHTML = ""; // limpiar
@@ -96,34 +97,59 @@ function initPagos() {
         <div class="pago-item card small">
           <h3><i class="fa-solid fa-file-invoice-dollar"></i> ${nombre}</h3>
           <div class="grid-2 gap">
-            <div class="field">
-              <label>Orden:</label>
-              <input type="text" name="orden_${clave}"/>
-            </div>
-            <div class="field">
-              <label>Importe:</label>
-              <input type="number" name="importe_${clave}" step="0.01"/>
-            </div>
-            <div class="field">
-              <label>Fecha:</label>
-              <input type="date" name="fecha_${clave}"/>
-            </div>
-            <div class="field">
-              <label>Recibo:</label>
-              <input type="text" name="recibo_${clave}"/>
-            </div>
-            <div class="field">
-              <label>Pagado:</label>
-              <input type="number" name="pagado_${clave}" step="0.01"/>
-            </div>
+            <div class="field"><label>Orden:</label><input type="text" name="orden_${clave}"/></div>
+            <div class="field"><label>Importe:</label><input type="number" name="importe_${clave}" step="0.01"/></div>
+            <div class="field"><label>Fecha:</label><input type="date" name="fecha_${clave}"/></div>
+            <div class="field"><label>Recibo:</label><input type="text" name="recibo_${clave}"/></div>
+            <div class="field"><label>Pagado:</label><input type="number" name="pagado_${clave}" step="0.01"/></div>
           </div>
         </div>
       `;
     });
 
-    // Cambiar de etapa
+    // Activar etapa 2 y desactivar etapa 1
     document.getElementById("step-1").classList.remove("active");
     document.getElementById("step-2").classList.add("active");
+  });
+
+  // --- BOTÓN REGRESAR ETAPA 2 → 1 ---
+  const backBtn2 = document.createElement("button");
+  backBtn2.textContent = "← Regresar a Etapa 1";
+  backBtn2.classList.add("btn", "secondary");
+  document.querySelector("#step-2 .actions").prepend(backBtn2);
+
+  backBtn2.addEventListener("click", () => {
+    document.getElementById("step-2").classList.remove("active");
+    document.getElementById("step-1").classList.add("active");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  // --- BOTÓN SIGUIENTE ETAPA 2 → 3 ---
+  const nextBtn2 = document.createElement("button");
+  nextBtn2.textContent = " Siguiente Etapa →";
+  nextBtn2.classList.add("btn", "success");
+  document.querySelector("#step-2 .actions").appendChild(nextBtn2);
+
+  nextBtn2.addEventListener("click", () => {
+    document.getElementById("step-2").classList.remove("active");
+    document.getElementById("step-3").classList.add("active");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  // --- BOTÓN REGRESAR ETAPA 3 → 2 ---
+  const backBtn3 = document.getElementById("btnRegresarEtapa2");
+  backBtn3.addEventListener("click", () => {
+    document.getElementById("step-3").classList.remove("active");
+    document.getElementById("step-2").classList.add("active");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  // --- Mostrar campos adicionales en Etapa 3 si estatus = "Entregado" ---
+  const selectEstatus = document.getElementById("estatusEntrega");
+  const camposEntregado = document.getElementById("camposEntregado");
+
+  selectEstatus.addEventListener("change", () => {
+    camposEntregado.style.display = selectEstatus.value === "entregado" ? "block" : "none";
   });
 }
 
