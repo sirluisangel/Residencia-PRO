@@ -415,27 +415,53 @@ body.layout {
 .hidden { display: none; }
 
 .permisos-lista {
-  display: flex;
-  flex-direction: column; /* Hace que los items se apilen verticalmente */
-  gap: 10px; /* Espacio entre cada item */
-  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* ✅ dos columnas fijas */
+  gap: 18px;
+  margin-top: 15px;
 }
 
 .permiso-item {
   display: flex;
   align-items: center;
-  padding: 8px 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  background-color: #f9f9f9;
-  transition: background 0.2s;
+  gap: 10px;
+  background: #fdfdfd;
+  border: 1.5px solid #d1d5db;
+  border-radius: 12px;
+  padding: 14px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
 
 .permiso-item:hover {
-  background-color: #e0f0ff;
+  background: #eef2ff;
+  border-color: #6366f1;
+  box-shadow: 0 4px 10px rgba(99, 102, 241, 0.15);
+  transform: translateY(-2px);
 }
 
 .permiso-item input[type="checkbox"] {
-  margin-right: 10px;
-  transform: scale(1.2);
+  width: 18px;
+  height: 18px;
+  accent-color: #4f46e5;
+  flex-shrink: 0;
 }
+
+.permiso-item span {
+  font-size: 14px;
+  color: #333;
+  line-height: 1.4;
+}
+
+.permiso-item b {
+  color: #1e3a8a;
+}
+
+/* 🔹 Adaptable para pantallas pequeñas */
+@media (max-width: 700px) {
+  .permisos-lista {
+    grid-template-columns: 1fr; /* una sola columna en móvil */
+  }
+}
+
