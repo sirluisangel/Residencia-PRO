@@ -1,424 +1,187 @@
-/* ================================
-   VARIABLES DE COLOR
-   ================================ */
+/* =====================================================
+   🎨 ESTILOS GENERALES DEL DASHBOARD
+   ===================================================== */
+
+/* Variables globales */
 :root {
-  --bg: #f9fafb;
+  --bg-main: #f4f6f8;
   --bg-card: #ffffff;
-  --bg-sidebar: #f1f5f9;
-  --bg-topbar: #ffffff;
-  --text: #1e293b;
-  --text-muted: #64748b;
-  --primary: #2563eb;
-  --primary-hover: #1d4ed8;
-  --success: #16a34a;
-  --info: #0284c7;
-  --danger: #dc2626;
-  --ghost: #94a3b8;
-  --border: #e2e8f0;
-  --shadow: 0 4px 10px rgba(0,0,0,0.08);
-  --radius: 12px;
-  --transition: 0.3s ease;
-}
-
-/* Tema oscuro */
-body.dark {
-  --bg: #0f172a;
-  --bg-card: #1e293b;
   --bg-sidebar: #1e293b;
-  --bg-topbar: #1e293b;
-  --text: #f1f5f9;
-  --text-muted: #94a3b8;
-  --border: #334155;
-  --shadow: 0 4px 10px rgba(0,0,0,0.4);
+  --bg-topbar: #ffffff;
+  --text-main: #1f2937;
+  --text-light: #f9fafb;
+  --border: #e2e8f0;
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  --radius: 12px;
+  --transition: all 0.25s ease-in-out;
 }
 
-/* ================================
-   LAYOUT PRINCIPAL
-   ================================ */
-body.layout {
+/* Modo oscuro */
+body.dark-mode {
+  --bg-main: #0f172a;
+  --bg-card: #1e293b;
+  --bg-sidebar: #0f172a;
+  --bg-topbar: #1e293b;
+  --text-main: #f8fafc;
+  --border: #334155;
+}
+
+/* Reset básico */
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: "Inter", system-ui, sans-serif;
-  background: var(--bg);
-  color: var(--text);
+}
+
+html, body {
+  height: 100%;
+  background: var(--bg-main);
+  color: var(--text-main);
+  overflow: hidden;
+}
+
+/* =====================================================
+   📁 LAYOUT PRINCIPAL
+   ===================================================== */
+
+.app-container {
   display: flex;
   height: 100vh;
   overflow: hidden;
-  transition: background var(--transition), color var(--transition);
 }
 
-/* Sidebar */
+/* SIDEBAR */
 .sidebar {
   width: 260px;
   background: var(--bg-sidebar);
   box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+  padding: 1.25rem;
+  border-right: 1px solid var(--border);
   transition: background var(--transition);
 }
 
-.sidebar .brand {
+.sidebar h2 {
+  color: var(--text-light);
   font-size: 1.25rem;
-  font-weight: 700;
   margin-bottom: 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: .5rem;
+  text-align: center;
+  font-weight: 600;
 }
 
-.sidebar nav {
-  display: flex;
-  flex-direction: column;
-  gap: .5rem;
-}
-
-.sidebar .navitem {
-  padding: .75rem 1rem;
-  border-radius: var(--radius);
-  color: var(--text);
+.navitem {
+  color: var(--text-light);
   text-decoration: none;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  margin-bottom: 0.5rem;
   display: flex;
   align-items: center;
-  gap: .5rem;
-  cursor: pointer;
-  transition: background var(--transition), color var(--transition);
+  gap: 10px;
+  transition: var(--transition);
 }
 
-.sidebar .navitem:hover,
-.sidebar .navitem.active {
+.navitem:hover,
+.navitem.active {
   background: var(--primary);
   color: #fff;
+  transform: translateX(5px);
 }
 
-/* Main */
+/* =====================================================
+   🔝 TOPBAR
+   ===================================================== */
+
+.topbar {
+  background: var(--bg-topbar);
+  box-shadow: var(--shadow);
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  transition: background var(--transition);
+}
+
+.topbar h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.topbar button {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.topbar button:hover {
+  background: var(--primary-hover);
+}
+
+/* =====================================================
+   🧱 CONTENIDO PRINCIPAL
+   ===================================================== */
+
 .content {
   flex: 1;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  padding: 1.5rem;
+  box-sizing: border-box;
 }
 
-/* Topbar */
-.topbar {
-  background: var(--bg-topbar);
-  box-shadow: var(--shadow);
-  padding: 1rem 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  transition: background var(--transition);
-}
+/* =====================================================
+   📦 SECCIONES
+   ===================================================== */
 
-.topbar h1 {
-  font-size: 1.2rem;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  gap: .5rem;
-}
-
-.topbar-actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.badge {
-  background: var(--primary);
-  color: white;
-  padding: .3rem .75rem;
-  border-radius: var(--radius);
-  font-size: .85rem;
-}
-
-.icon-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 1.1rem;
-  color: var(--text);
-  transition: color var(--transition), transform var(--transition);
-}
-.icon-btn:hover {
-  color: var(--primary);
-  transform: rotate(10deg);
-}
-
-/* ================================
-   TARJETAS Y SECCIONES
-   ================================ */
 .section {
   background: var(--bg-card);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  margin: 1rem auto;
-  padding: 1.5rem;
-  width: 95%;
-  max-width: 1400px;
+  margin: 0 auto 2rem auto;
+  padding: 1.5rem 2rem;
+  width: 100%;
+  max-width: 1300px;
+  box-sizing: border-box;
   transition: background var(--transition), color var(--transition);
 }
 
-.section h2 {
-  margin-top: 0;
-  font-size: 1.1rem;
-  border-bottom: 2px solid var(--border);
-  padding-bottom: .5rem;
-  margin-bottom: 1rem;
-}
-
-/* Campos */
-.field {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1rem;
-}
-
-.field label {
-  font-size: .9rem;
-  margin-bottom: .3rem;
-  color: var(--text-muted);
-}
-
-.field input,
-.field select,
-.field textarea {
-  padding: .6rem .8rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--bg);
-  color: var(--text);
-  transition: border var(--transition), background var(--transition), color var(--transition);
-}
-
-.field input:focus,
-.field select:focus,
-.field textarea:focus {
-  border-color: var(--primary);
-  outline: none;
-}
-
-/* ================================
-   BOTONES
-   ================================ */
-.btn {
-  padding: .6rem 1rem;
-  border: none;
-  border-radius: var(--radius);
-  cursor: pointer;
-  transition: background var(--transition), transform var(--transition);
-  display: inline-flex;
-  align-items: center;
-  gap: .5rem;
-  font-weight: 500;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-}
-
-.btn.success { background: var(--success); color: #fff; }
-.btn.info { background: var(--info); color: #fff; }
-.btn.danger { background: var(--danger); color: #fff; }
-.btn.ghost { background: var(--ghost); color: #fff; }
-.btn:not(.success,.info,.danger,.ghost) { background: var(--primary); color: #fff; }
-
-/* ================================
-   TABLAS
-   ================================ */
-.table-wrap {
-  overflow-x: auto;
-}
-
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1rem;
-}
-
-.table th,
-.table td {
-  padding: .7rem;
-  border: 1px solid var(--border);
-  text-align: left;
-  font-size: .9rem;
-}
-
-.table th {
-  background: var(--bg-sidebar);
-  color: var(--text);
-}
-
-.table tfoot td {
-  background: var(--bg-sidebar);
-  font-weight: 700;
-}
-
-.right { text-align: right; }
-.bold { font-weight: 700; }
-
-/* ================================
-   GRID & UTILIDADES
-   ================================ */
-.grid-2 {
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  gap: 1rem;
-}
-.gap { gap: 1rem; }
-.hidden { display: none; }
-.small { font-size: .9rem; }
-
-/* ================================
-   RESPONSIVE
-   ================================ */
-@media (max-width: 1024px) {
-  .sidebar { width: 220px; }
-  .grid-2 { grid-template-columns: 1fr; }
-}
-
-@media (max-width: 768px) {
-  body.layout { flex-direction: column; }
-  .sidebar {
-    flex-direction: row;
-    overflow-x: auto;
-    width: 100%;
-    padding: .5rem;
-  }
-  .sidebar nav { flex-direction: row; gap: .5rem; }
-  .topbar { flex-wrap: wrap; gap: .5rem; }
-}
-
-/* Contenedor general de trámites */
-#tramitesContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  padding: 15px;
-}
-
-/* Cada trámite como card */
-.tramite {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 15px;
-  border-radius: 12px;
-  background: #ffffff;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.tramite:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-}
-
-/* Ícono y label */
-.tramite-label {
+.section h3 {
+  font-size: 1.25rem;
   font-weight: 600;
-  color: #1e293b;
-  flex: 1;
+  color: var(--primary);
   display: flex;
   align-items: center;
   gap: 8px;
+  margin-bottom: 0.75rem;
 }
 
-/* Inputs: cantidad, precio e importe */
-.cantidad, .precio, .importe {
-  width: 80px;
-  padding: 6px 10px;
-  border-radius: 8px;
-  border: 1px solid #cbd5e1;
-  font-size: 0.9rem;
-  text-align: center;
-  transition: border-color 0.2s;
+.section p {
+  margin-bottom: 1rem;
+  color: #555;
+  font-size: 0.95rem;
 }
 
-.cantidad:focus, .precio:focus {
-  border-color: #2563eb;
-  outline: none;
-}
-
-/* Botones */
-.btn {
-  padding: 6px 12px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: background 0.2s, transform 0.2s;
-}
-
-.reg-btn {
-  background: #2563eb;
-  color: white;
-}
-
-.reg-btn:hover:enabled {
-  background: #1e40af;
-  transform: translateY(-1px);
-}
-
-.ver-btn {
-  background: #f1f5f9;
-  color: #1e293b;
-}
-
-.ver-btn:hover {
-  background: #e2e8f0;
-  transform: translateY(-1px);
-}
-
-/* Checkbox estilo moderno */
-.chk {
-  width: 18px;
-  height: 18px;
-  accent-color: #2563eb;
-}
-
-/* Inputs deshabilitados */
-.cantidad:disabled, .precio:disabled {
-  background: #f1f5f9;
-  cursor: not-allowed;
-}
-
-/* Animación de entrada/salida */
-.fade {
-  opacity: 0;
-  transition: opacity 0.4s ease-in-out;
-}
-
-.fade.show {
-  opacity: 1;
-}
-
-.fade {
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-.show {
-    opacity: 1;
-}
-
-.step {
-  display: none;
-  margin-bottom: 2rem;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.5s ease;
-}
-.step.active {
-  display: block;
-  opacity: 1;
-  transform: translateY(0);
-}
-.hidden { display: none; }
+/* =====================================================
+   🧾 PERMISOS A TRAMITAR
+   ===================================================== */
 
 .permisos-lista {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* ✅ dos columnas fijas */
-  gap: 18px;
-  margin-top: 15px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 20px;
+  padding: 10px;
 }
 
 .permiso-item {
@@ -428,10 +191,10 @@ body.layout {
   background: #fdfdfd;
   border: 1.5px solid #d1d5db;
   border-radius: 12px;
-  padding: 14px;
+  padding: 14px 16px;
   cursor: pointer;
   transition: all 0.25s ease;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .permiso-item:hover {
@@ -458,10 +221,69 @@ body.layout {
   color: #1e3a8a;
 }
 
-/* 🔹 Adaptable para pantallas pequeñas */
-@media (max-width: 700px) {
-  .permisos-lista {
-    grid-template-columns: 1fr; /* una sola columna en móvil */
+/* =====================================================
+   ⚙️ RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 220px;
+    padding: 1rem;
+  }
+
+  .topbar {
+    padding: 0.8rem 1.2rem;
+  }
+
+  .content {
+    padding: 1rem;
+  }
+
+  .section {
+    padding: 1rem 1.2rem;
   }
 }
 
+@media (max-width: 700px) {
+  .app-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .permisos-lista {
+    grid-template-columns: 1fr;
+    padding: 5px;
+  }
+
+  .section {
+    padding: 1rem;
+  }
+
+  .content {
+    padding: 1rem;
+  }
+}
+
+/* =====================================================
+   💡 SCROLLBAR PERSONALIZADO
+   ===================================================== */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(99, 102, 241, 0.6);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--primary-hover);
+}
